@@ -1,0 +1,24 @@
+services:
+
+  laravel-docker:
+    container_name: laravel_sanctum
+    build: .
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - 9014:80
+
+  mysql_db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_laravel_sanctum
+    ports:
+    - 3324:3306
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 9914:80
+    environment:
+      - PMA_ARBITRARY=1
