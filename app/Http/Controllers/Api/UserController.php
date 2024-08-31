@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller implements HasMiddleware
 {
@@ -13,12 +14,13 @@ class UserController extends Controller implements HasMiddleware
     {
         return [
             'auth:sanctum',
+            'verified'
         ];
     }
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke()
     {
         $user = User::all();
         return response()->json([
